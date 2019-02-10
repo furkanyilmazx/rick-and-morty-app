@@ -45,8 +45,8 @@ class HomePage extends Component {
     const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
     return (
       <div
-      className="scrollbar-content"
-        style={{ height: '100%', overflow: 'auto', overflowX: "hidden" }}
+        className="scrollbar-content"
+        style={{ height: '100%', overflow: 'auto', overflowX: 'hidden' }}
         ref={(ref) => (this.scrollParentRef = ref)}>
         <InfiniteScroll
           initialLoad={true}
@@ -69,15 +69,34 @@ class HomePage extends Component {
               <List.Item key={item.id}>
                 <Card
                   style={{ width: 300 }}
-                  cover={<Link to={`/${item.id}`}><img alt="example" src={item.image} /></Link>}>
+                  cover={
+                    <Link to={`/${item.id}`}>
+                      <img alt="example" src={item.image} />
+                    </Link>
+                  }>
                   <Meta
-                    avatar={<Avatar src={item.image} />}
+                    avatar={
+                      <Avatar
+                        style={{
+                          border: `2px solid ${
+                            item.status === 'Alive'
+                              ? '#52c41a'
+                              : item.status === 'Dead'
+                              ? '#f5222d'
+                              : '#d9d9d9'
+                          }`,
+                        }}
+                        src={item.image}
+                      />
+                    }
                     title={<Link to={`/${item.id}`}>{item.name}</Link>}
                   />
                 </Card>
               </List.Item>
             )}>
-            {this.state.loading && this.state.hasMore && <Spin style={{marginTop: "100px"}} indicator={antIcon}/>}
+            {this.state.loading && this.state.hasMore && (
+              <Spin style={{ marginTop: '100px' }} indicator={antIcon} />
+            )}
           </List>
         </InfiniteScroll>
       </div>
