@@ -42,9 +42,11 @@ class HomePage extends Component {
   };
 
   render() {
+    const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
     return (
       <div
-        style={{ height: '100%', overflow: 'auto' }}
+      className="scrollbar-content"
+        style={{ height: '100%', overflow: 'auto', overflowX: "hidden" }}
         ref={(ref) => (this.scrollParentRef = ref)}>
         <InfiniteScroll
           initialLoad={true}
@@ -56,50 +58,26 @@ class HomePage extends Component {
           <List
             dataSource={this.state.data}
             grid={{
-              gutter: 8,
               xs: 1,
               sm: 2,
               md: 4,
               lg: 4,
-              xl: 8,
+              xl: 4,
               xxl: 5,
             }}
             renderItem={(item) => (
               <List.Item key={item.id}>
                 <Card
                   style={{ width: 300 }}
-                  actions={[
-                    <span>
-                      <i className={`fa fa-${item.gender.toLowerCase()}`} />
-                      {item.gender}
-                    </span>,
-                    <Badge
-                      status={
-                        item.status === 'Alive'
-                          ? 'success'
-                          : item.status === 'Dead'
-                          ? 'error'
-                          : 'default'
-                      }
-                      text={item.status}
-                    />,
-                    <Link className="btn-back" to={`/${item.id}`}>
-                      <Icon
-                        onClick={() => this.setState({ page: true })}
-                        type="ellipsis"
-                      />
-                    </Link>,
-                  ]}
-                  cover={<img alt="example" src={item.image} />}>
+                  cover={<Link to={`/${item.id}`}><img alt="example" src={item.image} /></Link>}>
                   <Meta
                     avatar={<Avatar src={item.image} />}
-                    title={item.name}
-                    description={<div>{item.species}</div>}
+                    title={<Link to={`/${item.id}`}>{item.name}</Link>}
                   />
                 </Card>
               </List.Item>
             )}>
-            {this.state.loading && this.state.hasMore && <Spin />}
+            {this.state.loading && this.state.hasMore && <Spin style={{marginTop: "100px"}} indicator={antIcon}/>}
           </List>
         </InfiniteScroll>
       </div>

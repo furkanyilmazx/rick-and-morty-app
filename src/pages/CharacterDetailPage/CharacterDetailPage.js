@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Skeleton, Row, Col, Card, Icon, Button, Badge, Carousel } from 'antd';
+import { Skeleton, Row, Col, Card, Icon, Button, Badge, Table } from 'antd';
 import { Character, Episode } from '../../models';
 import { withRouter, Link } from 'react-router-dom';
 
@@ -39,70 +39,104 @@ class CharacterDetailPage extends Component {
   }
 
   render() {
+    const columns = [
+      {
+        title: 'Episode',
+        dataIndex: 'episode',
+        key: 'episode',
+      },
+      {
+        title: 'Name',
+        dataIndex: 'name',
+        key: 'name',
+      },
+      {
+        title: 'Air Date',
+        dataIndex: 'air_date',
+        key: 'air_date',
+      },
+    ];
+
     return (
       <React.Fragment>
-        <Button.Group>
-          <Button type="primary">
-            <Link to="/">
-              <Icon type="left" />
-              Go Back
-            </Link>
-          </Button>
-        </Button.Group>
-        <Row>
-          <Skeleton
-            loading={this.state.loading}
-            avatar
-            paragraph={{ rows: 4 }}
-            active>
+        <Row className="fyx-episodes">
+          <Skeleton loading={this.state.loading} avatar active>
             {this.state.character && (
               <React.Fragment>
-                <Col span={2}>
-                  <img
-                    style={{
-                      maxWidth: '100%',
-                      height: 'auto',
-                      borderRadius: '50%',
-                      margin: 'auto',
-                      display: 'block',
-                    }}
-                    alt="example"
+                <Col span={3} className="profile-img">
+                <img
+                    alt={this.state.character.image}
                     src={this.state.character.image}
                   />
+                  <Button  block>
+                    <Link to="/">
+                      <Icon type="left" />
+                      Go Back
+                    </Link>
+                  </Button>
+                 
                 </Col>
-                <Col span={20}>
-                  <Row>{this.state.character.name}</Row>
-                  <Row>{this.state.character.location.name}</Row>
+                <Col span={21}>
                   <Row>
-                    {' '}
-                    <span>
-                      <i
-                        className={`fa fa-${this.state.character.gender.toLowerCase()}`}
+                    <Col span={2} className="label">
+                      Name
+                    </Col>
+                    <Col span={20} className="value">
+                      {this.state.character.name}
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col span={2} className="label">
+                      Location
+                    </Col>
+                    <Col span={20} className="value">
+                      {this.state.character.location.name}
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col span={2} className="label">
+                      Species
+                    </Col>
+                    <Col span={20} className="value">
+                      {this.state.character.species}
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col span={2} className="label">
+                      Gender
+                    </Col>
+                    <Col span={20} className="value">
+                      <span>
+                        <i
+                          className={`fa fa-${this.state.character.gender.toLowerCase()}`}
+                        />
+                        {this.state.character.gender}
+                      </span>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col span={2} className="label">
+                      Status
+                    </Col>
+                    <Col span={20} className="value">
+                      <Badge
+                        status={
+                          this.state.character.status === 'Alive'
+                            ? 'success'
+                            : this.state.character.status === 'Dead'
+                            ? 'error'
+                            : 'default'
+                        }
+                        text={this.state.character.status}
                       />
-                      {this.state.character.gender}
-                    </span>
+                    </Col>
                   </Row>
                   <Row>
-                    {' '}
-                    <Badge
-                      status={
-                        this.state.character.status === 'Alive'
-                          ? 'success'
-                          : this.state.character.status === 'Dead'
-                          ? 'error'
-                          : 'default'
-                      }
-                      text={this.state.character.status}
+                    <Table
+                      pagination={false}
+                      dataSource={this.state.character.episode}
+                      columns={columns}
                     />
-                  </Row>
-                  <Row>
-                    <Carousel>
-                      {this.state.character.episode.map((episode, index) => (
-                        <div key={index}>
-                          <h3>{episode.name}</h3>
-                        </div>
-                      ))}
-                    </Carousel>
                   </Row>
                 </Col>
               </React.Fragment>
