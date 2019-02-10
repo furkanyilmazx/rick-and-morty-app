@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Skeleton, Row, Col, Card, Icon, Button, Badge } from 'antd';
+import { Skeleton, Row, Col, Card, Icon, Button, Badge, Carousel } from 'antd';
 import { Character, Episode } from '../../models';
 import { withRouter, Link } from 'react-router-dom';
 
@@ -18,9 +18,18 @@ class CharacterDetailPage extends Component {
         model.episode = await model.episode.map(async (episode) => {
           const response = await fetch(episode);
           const json = await response.json();
+          /*json.characters = await json.characters.map(async (character) => {
+            const response = await fetch(character);
+            const json = await response.json();
+            return json;
+          });
+
+          json.characters = await Promise.all(json.characters);*/
           return json;
         });
         model.episode = await Promise.all(model.episode);
+        console.log(model.episode);
+
         this.setState({
           character: model,
           loading: false,
@@ -34,8 +43,10 @@ class CharacterDetailPage extends Component {
       <React.Fragment>
         <Button.Group>
           <Button type="primary">
-            <Icon type="left" />
-            Go Back
+            <Link to="/">
+              <Icon type="left" />
+              Go Back
+            </Link>
           </Button>
         </Button.Group>
         <Row>
@@ -85,9 +96,13 @@ class CharacterDetailPage extends Component {
                     />
                   </Row>
                   <Row>
-                    <Col>
-                      {JSON.stringify(this.state.character.episode)} fdsf
-                    </Col>
+                    <Carousel>
+                      {this.state.character.episode.map((episode, index) => (
+                        <div key={index}>
+                          <h3>{episode.name}</h3>
+                        </div>
+                      ))}
+                    </Carousel>
                   </Row>
                 </Col>
               </React.Fragment>
