@@ -1,0 +1,30 @@
+.fyx .trigger {
+    font-size: 18px;
+    line-height: 64px;
+    padding: 0 24px;
+    cursor: pointer;
+    transition: color .3s;
+  }
+  
+  .fyx .trigger:hover {
+    color: #1890ff;
+  }
+  
+  .fyx .logo {
+    height: 54px;
+    background: rgba(255,255,255,.2);
+    margin-left: 24px;
+  }
+
+  .fyx-dl-sidemenu .ant-layout-sider-children ul .ant-menu-item a,
+  .fyx-dl-sidemenu .ant-layout-sider-children ul .ant-menu-submenu span {
+    font-size: 12px;
+  }
+
+  .fyx-dl-content {
+    margin: 12px;
+    background: #fff;
+    min-height: 100vh;
+    max-height: 100vh;
+  }
+  
