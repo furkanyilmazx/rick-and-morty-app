@@ -1,7 +1,6 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { charactersLoaded } from './actions';
 import actionTypes from './action-types';
-import { Character } from '../../models';
 
 export function* loadCharacters(actionPayload) {
   const { charactersApiInfo } = actionPayload;
