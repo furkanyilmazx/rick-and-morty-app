@@ -44,7 +44,7 @@ class DefaultLayout extends Component {
   render() {
     const { onOpenChange } = this;
     const { collapsed, openKeys } = this.state;
-    const { location } = this.props;
+    const { location, children } = this.props;
     return (
       <Layout style={{ height: '100vh' }}>
         <Layout>
@@ -59,7 +59,7 @@ class DefaultLayout extends Component {
               openKeys={openKeys}
               onOpenChange={onOpenChange}
             />
-            <Content className="fyx-dl-content">{this.props.children}</Content>
+            <Content className="fyx-dl-content">{children}</Content>
           </Layout>
         </Layout>
       </Layout>

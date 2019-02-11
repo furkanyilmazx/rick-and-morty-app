@@ -12,7 +12,8 @@ import './index.scss'
 
 class CharacterDetailPage extends Component {
   componentDidMount() {
-    this.props.loadCharacter(this.props.match.params.id);
+    const {loadCharacter, match} = this.props;
+    loadCharacter(match.params.id);
   }
 
   render() {
