@@ -1,0 +1,5 @@
+export default {
+    LOAD_CHARACTER: 'LOAD_CHARACTER',
+    CHARACTER_LOADED: 'CHARACTER_LOADED',
+  };
+  

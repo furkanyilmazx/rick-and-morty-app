@@ -1,101 +1,79 @@
 import React, { Component } from 'react';
-import { List, Avatar, Spin, Card, message, Badge, Icon } from 'antd';
-import { withRouter, Link } from 'react-router-dom';
-import Character from '../../models/character';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { List, Spin, message, Icon } from 'antd';
+import { withRouter } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroller';
+import { loadCharacters, charactersLoaded } from './actions';
+import CharacterCard from '../../components/CharacterCard';
+import { LIST_GRID } from './constants';
 
 import '../Pages.scss';
-const { Meta } = Card;
+import './index.scss';
+
 class HomePage extends Component {
   state = {
-    data: [],
-    apiInfo: undefined,
-    loading: false,
     hasMore: true,
-    page: false,
   };
 
+  componentDidMount() {
+    const {
+      charactersApiInfo,
+      loadCharacters,
+      characters,
+      charactersLoaded,
+    } = this.props;
+    // InfiniteScroll bug
+    charactersApiInfo
+      ? charactersLoaded({
+          characterList: characters,
+          response: { info: charactersApiInfo },
+        })
+      : loadCharacters(charactersApiInfo);
+  }
+
   handleInfiniteOnLoad = (index) => {
-    console.log(index, this.props.location.pathname);
-    let data = this.state.data;
-    this.setState({
-      loading: true,
-    });
-    if (this.state.apiInfo && index > this.state.apiInfo.pages) {
+    const { characters, charactersApiInfo, loadCharacters } = this.props;
+    if (index === 1) return;
+    if (charactersApiInfo && charactersApiInfo.count === characters.length) {
       message.warning('Infinite List loaded all');
       this.setState({
         hasMore: false,
-        loading: false,
       });
       return;
     }
-    Character.all({ queryParams: { page: index } }).then(
-      ({ resultList, response }) => {
-        data = data.concat(resultList);
-        this.setState({
-          data,
-          loading: false,
-          apiInfo: response.info,
-        });
-      }
-    );
+    loadCharacters(charactersApiInfo);
   };
 
   render() {
-    const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
+    const { scrollParentRef, handleInfiniteOnLoad } = this;
+    const { characters, charactersLoading } = this.props;
+    const { hasMore } = this.state;
     return (
       <div
         className="scrollbar-content"
-        style={{ height: '100%', overflow: 'auto', overflowX: 'hidden' }}
         ref={(ref) => (this.scrollParentRef = ref)}>
         <InfiniteScroll
           initialLoad={true}
           pageStart={0}
-          loadMore={this.handleInfiniteOnLoad}
-          hasMore={!this.state.loading && this.state.hasMore}
-          getScrollParent={() => this.scrollParentRef}
+          loadMore={handleInfiniteOnLoad}
+          hasMore={!charactersLoading && hasMore}
+          getScrollParent={() => scrollParentRef}
           useWindow={false}>
           <List
-            dataSource={this.state.data}
-            grid={{
-              xs: 1,
-              sm: 2,
-              md: 4,
-              lg: 4,
-              xl: 4,
-              xxl: 5,
-            }}
+            dataSource={characters}
+            grid={LIST_GRID}
             renderItem={(item) => (
               <List.Item key={item.id}>
-                <Card
-                  style={{ width: 300 }}
-                  cover={
-                    <Link to={`/${item.id}`}>
-                      <img alt="example" src={item.image} />
-                    </Link>
-                  }>
-                  <Meta
-                    avatar={
-                      <Avatar
-                        style={{
-                          border: `2px solid ${
-                            item.status === 'Alive'
-                              ? '#52c41a'
-                              : item.status === 'Dead'
-                              ? '#f5222d'
-                              : '#d9d9d9'
-                          }`,
-                        }}
-                        src={item.image}
-                      />
-                    }
-                    title={<Link to={`/${item.id}`}>{item.name}</Link>}
-                  />
-                </Card>
+                <CharacterCard character={item} />
               </List.Item>
             )}>
-            {this.state.loading && this.state.hasMore && (
-              <Spin style={{ marginTop: '100px' }} indicator={antIcon} />
+            {charactersLoading && hasMore && (
+              <Spin
+                indicator={
+                  <Icon type="loading" style={{ fontSize: 24 }} spin />
+                }
+              />
             )}
           </List>
         </InfiniteScroll>
@@ -104,4 +82,26 @@ class HomePage extends Component {
   }
 }
 
-export default withRouter(HomePage);
+HomePage.propTypes = {
+  characters: PropTypes.array,
+  charactersApiInfo: PropTypes.object,
+  charactersLoading: PropTypes.bool,
+  loadCharacters: PropTypes.func,
+  charactersLoaded: PropTypes.func,
+};
+
+const mapStateToProps = (state) => ({
+  charactersLoading: state.homePageReducer.charactersLoading,
+  characters: state.homePageReducer.characters,
+  charactersApiInfo: state.homePageReducer.charactersApiInfo,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  loadCharacters: (index) => dispatch(loadCharacters(index)),
+  charactersLoaded: (payload) => dispatch(charactersLoaded(payload)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(HomePage));

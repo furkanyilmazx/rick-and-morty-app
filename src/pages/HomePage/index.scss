@@ -1,0 +1,38 @@
+figure.character-card-container {
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  box-shadow: 0 0 5px #ddd;
+  img {
+    -webkit-transition: all 0.5s linear;
+    transition: all 0.5s linear;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+  &:hover img {
+    -webkit-transform: scale3d(1.2, 1.2, 1);
+    transform: scale3d(1.2, 1.2, 1);
+  }
+}
+
+.scrollbar-content {
+  height: 100%;
+  overflow: auto;
+  overflow-x: hidden;
+  
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #f1f1f1;
+  }
+
+  &::-webkit-scrollbar {
+    width: 7px;
+    background-color: #f1f1f1;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #ccc;
+  }
+}

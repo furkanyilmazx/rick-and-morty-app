@@ -1,9 +1,9 @@
 export const SIDEBAR_MENUS = [
   {
     id: 1,
-    label: 'Home',
+    label: 'Characters',
     value: '/',
-    icon: 'home',
+    icon: 'team',
     parent: null,
     permissions: [
       {

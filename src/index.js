@@ -1,17 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import App from './App';
+import { settings } from 'rest-in-model';
 import registerServiceWorker from './registerServiceWorker';
 import { combinedReducers } from './store';
-import services from './services';
-import { settings } from 'rest-in-model';
+import homePageServices from './pages/HomePage/services';
+import characterDetailPageServices from './pages/CharacterDetailPage/services';
+import App from './App';
+
 const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(combinedReducers, applyMiddleware(sagaMiddleware));
-sagaMiddleware.run(services);
+
+sagaMiddleware.run(homePageServices);
+sagaMiddleware.run(characterDetailPageServices);
 
 settings.addEndpoint([
   {

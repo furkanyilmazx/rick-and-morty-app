@@ -4,6 +4,7 @@ import fourhundredfour from '../../assets/images/NotFoundPage/404.svg';
 import meteor from '../../assets/images/NotFoundPage/meteor.svg';
 import astronaut from '../../assets/images/NotFoundPage/astronaut.svg';
 import spaceship from '../../assets/images/NotFoundPage/spaceship.svg';
+
 import './index.scss';
 
 class NotFoundPage extends Component {
@@ -20,7 +21,7 @@ class NotFoundPage extends Component {
         </p>
         <div align="center">
           <Link className="btn-back" to="/">
-            BACK TO MARS
+            BACK TO RICK AND MORTY UNIVERSE
           </Link>
         </div>
         <img alt="astronaut" src={astronaut} className="astronaut" />

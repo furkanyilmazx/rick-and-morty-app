@@ -14,7 +14,7 @@ export const routes = [
     ),
   },
   {
-    path: '/:id',
+    path: '/character/:id',
     component: () => (
       <DefaultLayout>
         <CharacterDetailPage />

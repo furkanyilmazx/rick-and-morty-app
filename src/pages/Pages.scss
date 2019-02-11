@@ -1,58 +1,21 @@
 body {
   background: #ccc;
 }
+
 .fyx-dl-content {
-  .scrollbar-content {
-    margin-right: -12px;
-    &::-webkit-scrollbar-track {
-      border-radius: 10px;
-      background-color: #f1f1f1;
-    }
-
-    &::-webkit-scrollbar {
-      width: 7px;
-      background-color: #f1f1f1;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      border-radius: 10px;
-      background-color: #ccc;
-    }
+  overflow: auto;
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #f1f1f1;
   }
-}
-.fyx-episodes {
-  padding-top: 20px;
-  .profile-img {
-    padding: 10px;
-    img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 50%;
-      margin: auto;
-      display: block;
-      margin-bottom: 15px;
-      border: 3px solid #ccc;
-    }
+
+  &::-webkit-scrollbar {
+    width: 7px;
+    background-color: #f1f1f1;
   }
-  .ant-row {
-    border: 1px solid #eee;
-    border-top: none;
-    .label {
-      padding: 10px 15px;
-      color: black;
-      font-weight: 500;
-      border-right: 1px solid #ddd;
-      background: #fafafa;
-    }
-    .value {
-      padding: 10px 15px;
-    }
-    &:last-child {
-      border-bottom: none;
-      padding: 0;
-    }
-    &:first-child {
-      border-top: 1px solid #eee;
-    }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #ccc;
   }
 }
