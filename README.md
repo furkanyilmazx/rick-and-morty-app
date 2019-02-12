@@ -8,13 +8,13 @@ Clone repository with one of the following ways and start coding.
 with HTTPS:
 
 ```shell
-git clone https://github.com/furkanyilmazx/rick-and-morty-character-app.git
+git clone https://github.com/furkanyilmazx/rick-and-morty-app.git
 ```
 
 with SSH:
 
 ```shell
-git clone git@github.com:furkanyilmazx/rick-and-morty-character-app.git
+git clone git@github.com:furkanyilmazx/rick-and-morty-app.git
 ```
 
 ## Install
@@ -44,4 +44,5 @@ docker run -di --name rick-and-morty-app -p 8888:80 rick-and-morty-app
 ### Install from docker hub
 ```shell
 docker pull furkanyilmaz/rick-and-morty-app:latest
+docker run -di --name rick-and-morty-app -p 8888:80 furkanyilmaz/rick-and-morty-app:latest
 ```

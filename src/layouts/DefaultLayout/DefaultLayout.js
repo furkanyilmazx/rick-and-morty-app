@@ -67,29 +67,14 @@ class DefaultLayout extends Component {
   }
 }
 
-/**
- * Should be defined for each page
- */
 DefaultLayout.propTypes = {};
 
-/**
- * Example default prop definition
- */
 DefaultLayout.defaultProps = {};
 
-/**
- * To assign state elements of store to our current page's props
- */
 const mapStateToProps = (state) => ({});
 
-/**
- * To assign actions to our current page's props
- */
 const mapDispatchToProps = (dispatch) => ({});
 
-/**
- * Connect current page to redux store
- */
 export default connect(
   mapStateToProps,
   mapDispatchToProps

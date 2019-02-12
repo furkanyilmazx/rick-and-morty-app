@@ -23,10 +23,7 @@ class DefaultLayoutSider extends Component {
           defaultSelectedKeys={SIDEBAR_MENUS.filter(
             (menu_item) => menu_item.value === location.pathname
           ).map((item) => item.id.toString())}
-          {...!collapsed && { openKeys: openKeys }}
-          {...!collapsed && {
-            onOpenChange: onOpenChange,
-          }}>
+          {...!collapsed && { openKeys, onOpenChange }}>
           {SIDEBAR_MENUS.map(
             (menu) =>
               !menu.parent &&
