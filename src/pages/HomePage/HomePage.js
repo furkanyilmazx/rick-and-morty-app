@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { List, Spin, message, Icon } from 'antd';
 import { withRouter } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroller';
-import { loadCharacters, charactersLoaded } from './actions';
+import { loadCharacters, charactersAlreadyListed } from './actions';
 import CharacterCard from '../../components/CharacterCard';
 import { LIST_GRID } from './constants';
 
@@ -20,16 +20,12 @@ class HomePage extends Component {
     const {
       charactersApiInfo,
       loadCharacters,
-      characters,
-      charactersLoaded,
+      charactersAlreadyListed,
     } = this.props;
     // InfiniteScroll bug
     charactersApiInfo
-      ? charactersLoaded({
-          characterList: characters,
-          response: { info: charactersApiInfo },
-        })
-      : loadCharacters(charactersApiInfo);
+      ? charactersAlreadyListed()
+      : loadCharacters();
   }
 
   handleInfiniteOnLoad = (index) => {
@@ -98,7 +94,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   loadCharacters: (index) => dispatch(loadCharacters(index)),
-  charactersLoaded: (payload) => dispatch(charactersLoaded(payload)),
+  charactersAlreadyListed: () => dispatch(charactersAlreadyListed()),
 });
 
 export default connect(

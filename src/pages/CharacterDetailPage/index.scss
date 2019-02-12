@@ -15,6 +15,10 @@
     .ant-row {
       border: 1px solid #eee;
       border-top: none;
+
+      .character-gender {
+          margin-right: 5px;
+      }
       .label {
         padding: 10px 15px;
         color: black;

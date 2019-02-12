@@ -11,12 +11,15 @@ export default (state = initialState, action) => {
     case actionTypes.LOAD_CHARACTERS:
       return { ...state, charactersLoading: true };
     case actionTypes.CHARACTERS_LOADED:
-    console.log("dsad")
       return {
         ...state,
         charactersLoading: false,
         characters: [...state.characters, ...action.payload.characterList],
         charactersApiInfo: action.payload.response.info,
+      };
+    case actionTypes.CHARACTERS_ALREADY_LISTED:
+      return {
+        ...state,
       };
     default:
       return state;

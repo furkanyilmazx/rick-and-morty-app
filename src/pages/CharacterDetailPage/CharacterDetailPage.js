@@ -8,11 +8,11 @@ import { loadCharacter } from './actions';
 import { COLUMNS } from './constants';
 import { CHARACTER_STATUS } from '../../constants';
 
-import './index.scss'
+import './index.scss';
 
 class CharacterDetailPage extends Component {
   componentDidMount() {
-    const {loadCharacter, match} = this.props;
+    const { loadCharacter, match } = this.props;
     loadCharacter(match.params.id);
   }
 
@@ -36,7 +36,9 @@ class CharacterDetailPage extends Component {
             label: 'Gender',
             value: (
               <span>
-                <i className={`fa fa-${character.gender.toLowerCase()}`} />
+                <i
+                  className={`fa fa-${character.gender.toLowerCase()} character-gender`}
+                />
                 {character.gender}
               </span>
             ),
@@ -58,7 +60,6 @@ class CharacterDetailPage extends Component {
           },
         ]
       : [];
-
     return (
       <Row className="episodes scrollbar-content">
         <Skeleton loading={characterLoading} avatar active>
@@ -79,7 +80,7 @@ class CharacterDetailPage extends Component {
                 ))}
                 <Row>
                   <Table
-                    rowKey={`${character.id}`}
+                    rowKey="episode"
                     pagination={false}
                     dataSource={character.episode}
                     columns={COLUMNS}
