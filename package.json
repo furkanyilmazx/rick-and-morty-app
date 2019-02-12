@@ -15,7 +15,6 @@
     "react-scripts": "2.1.3",
     "redux": "^4.0.1",
     "redux-saga": "^1.0.0",
-    "reqwest": "^2.0.5",
     "rest-in-model": "^2.1.1"
   },
   "scripts": {
@@ -27,7 +26,8 @@
   "devDependencies": {
     "node-sass": "^4.11.0",
     "react-app-rewired": "^2.0.2",
-    "sass-loader": "^7.1.0"
+    "sass-loader": "^7.1.0",
+    "react-test-renderer": "^16.8.1"
   },
   "browserslist": [
     ">0.2%",

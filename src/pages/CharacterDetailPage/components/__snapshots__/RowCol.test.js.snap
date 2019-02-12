@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RowCol tests passed successfully 1`] = `
+<div
+  className="ant-row"
+>
+  <div
+    className="ant-col-2 label"
+  >
+    Name
+  </div>
+  <div
+    className="ant-col-20 value"
+  >
+    Furkan
+  </div>
+</div>
+`;
+
+exports[`RowCol tests passed successfully 2`] = `
+<div
+  className="ant-row"
+>
+  <div
+    className="ant-col-2 label"
+  >
+    Name
+  </div>
+  <div
+    className="ant-col-20 value"
+  >
+    Furkan
+  </div>
+</div>
+`;
+
+exports[`Snapshot Created 1`] = `
+<div
+  className="ant-row"
+>
+  <div
+    className="ant-col-2 label"
+  >
+    Name
+  </div>
+  <div
+    className="ant-col-20 value"
+  >
+    Furkan
+  </div>
+</div>
+`;
