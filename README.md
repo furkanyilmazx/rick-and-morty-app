@@ -3,9 +3,9 @@
 Rick and morty app developed as hobby project.
 
 
-[Live Demo](https://aio-app.herokuapp.com)
+[Live Demo](https://rick-and-morty-app.herokuapp.com/)
 
-![Heroku](https://heroku-badge.herokuapp.com/?app=aio-app)
+![Heroku](https://heroku-badge.herokuapp.com/?app=rick-and-morty-app)
 
 
 ## Usage
