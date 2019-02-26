@@ -5,7 +5,7 @@ Rick and morty app developed as hobby project.
 
 [Live Demo](https://aio-app.herokuapp.com)
 
-[![Heroku](https://heroku-badge.herokuapp.com/?app=aio-app)]
+![Heroku](https://heroku-badge.herokuapp.com/?app=aio-app)
 
 
 ## Usage
