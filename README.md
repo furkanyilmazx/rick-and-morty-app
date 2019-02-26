@@ -1,6 +1,13 @@
 # RICK AND MORTY APP
 
 Rick and morty app developed as hobby project.
+
+
+[Live Demo](https://aio-app.herokuapp.com)
+
+[![Heroku](https://heroku-badge.herokuapp.com/?app=aio-app)]
+
+
 ## Usage
 
 Clone repository with one of the following ways and start coding.
